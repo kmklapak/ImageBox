@@ -5,6 +5,4 @@ ImageBox::Application.routes.draw do
   match '/images/:id',          to: 'images#show',      via: 'get'
   match '/images/:id/edit',     to: 'images#edit',      via: 'get'
   match '/images/new',          to: 'images#new',       via: 'get'
-
-
 end

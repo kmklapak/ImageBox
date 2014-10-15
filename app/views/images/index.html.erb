@@ -1,4 +1,9 @@
-<div class="center hero-unit">
+<% if user_signed_in? %>
+<div class="center">
+
+</div>
+<% else %>
+<div class="center jumbotron">
   <h1>Welcome to ImageBox</h1>
 
   <h2>
@@ -7,3 +12,4 @@
 
   <%= link_to "Sign up now!", new_user_session_path, class: "btn btn-large btn-primary" %>
 </div>
+<% end %>
