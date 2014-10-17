@@ -2,7 +2,7 @@ class ImagesController < ApplicationController
   before_action :user_signed_in?
 
   def index
-     @images = Image.where(user_id: current_user)
+     @images = Image.where(user_id: current_user).page(params[:page]).order('created_at DESC')
   end
 
   def new

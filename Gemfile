@@ -26,6 +26,8 @@ gem 'autoprefixer-rails'
 gem 'simple_form'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'fog'
+gem 'will_paginate', '~> 3.0'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
