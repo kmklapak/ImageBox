@@ -1,2 +1,16 @@
-<h1>Images#new</h1>
-<p>Find me in app/views/images/new.html.erb</p>
+<% title "Upload Image" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div id="img-preview">
+        <p>Preview</p>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <%= render 'image_form' %>
+      <p><%= link_to "Back to Images", images_path %></p>
+    </div>
+  </div>
+</div>
+

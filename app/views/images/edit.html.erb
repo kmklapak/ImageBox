@@ -1,2 +1,17 @@
-<h1>Images#edit</h1>
-<p>Find me in app/views/images/edit.html.erb</p>
+<% title "Edit Image" %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div id="img-preview">
+        <p>Preview</p>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <%= render 'image_form' %>
+      <p><%= link_to "Back to Images", images_path %></p>
+    </div>
+  </div>
+</div>
+

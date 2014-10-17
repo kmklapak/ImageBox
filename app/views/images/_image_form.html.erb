@@ -1,0 +1,19 @@
+<%= simple_form_for @image, :html => {:multipart => true} do |f| %>
+    <p>
+        <%= f.input :title %>
+    </p>
+    <%if ! current_page?(:controller => 'images', :action => 'new')  %>
+    <p>
+      <label>Filename</label>  <%= @image.original_name%> </p>
+    </p>
+    <p>
+      <label>Location</label>  <%= @image.file_url%>
+    </p>
+        <%end %>
+    <p>
+        <%= f.input :file, :as => :file  %>
+    </p>
+    <div class="form-actions">
+      <%= f.submit "Save Image" %>
+    </div>
+<% end %>
