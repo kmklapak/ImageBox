@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ImageBox</title>
+  <title><%= content_for?(:title) ? yield(:title) : "ImageBox" %></title>
   <%= stylesheet_link_tag "application", media: "all",
                           "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -11,10 +11,8 @@
 <body>
     <%= render 'layouts/header' %>
     <div class="container">
-      <% if user_signed_in? %>
-          Signed in as <%= current_user.email %>. Not you?
-          <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-      <% end %>
+      <%= render partial: "layouts/flash", flash: flash %>
+      <%= content_tag :h1, yield(:title) if show_title? %>
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>
