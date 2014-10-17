@@ -3,8 +3,6 @@
 
 /* mixins, variables, etc. */
 
-$grayMediumLight: #eaeaea;
-
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -46,6 +44,7 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+  font-weight: bold;
 }
 
 h2 {
@@ -112,6 +111,54 @@ footer ul li {
   margin-left: 10px;
 }
 
+/* images */
+
+#new_painting {
+  clear: both;
+}
+
+.image {
+  border: solid 1px #CCC;
+  padding: 10px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+  .title {
+    padding-top: 5px;
+    text-align: center;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .actions {
+    font-size: 10px;
+    text-align: center;
+    color: #777;
+  }
+}
+
+.upload {
+  border-top: solid 1px #CCC;
+  width: 400px;
+  padding-top: 10px;
+  margin-top: 10px;
+
+  .progress {
+    margin-top: 8px;
+    border: solid 1px #555;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    .bar {
+      height: 10px;
+      background: #3EC144;
+    }
+  }
+}
+
 /* miscellaneous */
 
 .debug_dump {
@@ -120,4 +167,70 @@ footer ul li {
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+/* Simple forms */
+.simple_form label {
+  float: left;
+  width: 100px;
+  text-align: right;
+  margin: 2px 10px;
+}
+
+.simple_form div.input {
+  margin-bottom: 10px;
+}
+
+.simple_form div.boolean, .simple_form input[type='submit'] {
+  margin-left: 120px;
+}
+
+.simple_form div.boolean label, .simple_form label.collection_radio {
+  float: none;
+  margin: 0;
+}
+
+.simple_form label.collection_radio {
+  margin-right: 10px;
+  margin-left: 2px;
+}
+
+.simple_form .error {
+  clear: left;
+  margin-left: 120px;
+  font-size: 12px;
+  color: #D00;
+  display: block;
+}
+
+.simple_form .hint {
+  clear: left;
+  margin-left: 120px;
+  font-size: 12px;
+  color: #555;
+  display: block;
+  font-style: italic;
+}
+
+.hidden {
+  display: none;
+}
+
+#img-preview {
+  border: 2px solid #000;
+  border-radius: 6px;
+  width: 200px;
+}
+
+#img-preview p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#img-preview img {
+  max-width:100%;
+  max-height:100%;
+  display:block;
+  margin:auto;
 }
