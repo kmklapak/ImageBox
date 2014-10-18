@@ -8,6 +8,7 @@ group :development, :test do
   gem 'guard-rspec', '2.5.0'
   gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '2.13.1'
+  gem 'factory_girl_rails'
 end
 
 group :test do
