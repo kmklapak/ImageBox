@@ -1,55 +1,9 @@
 <% if user_signed_in? %>
-    Signed in as <%= current_user.username %>. Not you?
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-<div>
-  <% title "My Images", false %>
-  <% if @images.count() > 0 %>
-      <h1>My Images
-        <a href="<%= new_image_path %>"><button style="float:right" type="button" class="btn-success btn-default btn-lg">
-          Upload Image <span class="glyphicon glyphicon-plus"></span>
-        </button></a>
-      </h1>
-      <%= will_paginate @images %>
-      <div id="images">
-
-        <% for image in @images %>
-            <div class="image">
-              <%= image_tag image.file_url(:thumb).to_s %>
-              <div class="title"><%= image.title %></div>
-              <div class="actions">
-                <%= link_to "download", image_download_url(image) %> |
-                <%= link_to "edit", edit_image_path(image) %> |
-                <%= link_to "delete", image, :confirm => 'Are you sure? Image will be permanently deleted.', :method => :delete %>
-              </div>
-            </div>
-        <% end %>
-        <div class="clear"></div>
-      </div>
-  <% else %>
-      <div class="center jumbotron">
-        <h1>My Images</h1>
-
-        <h2>
-          Click the button below to start uploading images.
-        </h2>
-
-        <a href="<%= new_image_path %>"><button style="margin:auto" type="button" class="btn-success btn-default btn-lg">
-          Upload Image <span class="glyphicon glyphicon-plus"></span>
-        </button></a>
-      </div>
-
-  <% end %>
-</div>
+  Signed in as <%= current_user.username %>. Not you?
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <%= render 'image_pagination' %>
 <% else %>
-    <% title "Welcome", false %>
-<div class="center jumbotron">
-  <h1>Welcome to ImageBox</h1>
-
-  <h2>
-    The best place to store & manage images on the Web
-  </h2>
-
-  <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %> or
-  <%= link_to "Sign In", new_user_session_path %>
-</div>
+  <%= render 'welcome_message' %>
 <% end %>
+
+<%= render 'full_image_modal' %>

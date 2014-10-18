@@ -1,0 +1,27 @@
+<% title "My Images", false %>
+<% if @images.count() > 0 %>
+    <h1>My Images
+        <a href="<%= new_image_path %>"><button style="float:right" type="button" class="btn-success btn-default btn-lg">
+            Upload Image <span class="glyphicon glyphicon-plus"></span>
+        </button></a>
+    </h1>
+    <%= will_paginate @images %>
+    <div id="images">
+        <% for image in @images %>
+        <div class="overlay"></div>
+        <div class="image">
+            <%= image_tag image.file_url(:thumb).to_s %>
+            <%= hidden_field_tag 'full_size', image.file_url.to_s %>
+            <div class="title"><%= image.title %></div>
+            <div class="actions">
+                <%= link_to "download", image_download_url(image) %> |
+                <%= link_to "edit", edit_image_path(image) %> |
+                <%= link_to "delete", image, :confirm => 'Are you sure? Image will be permanently deleted.', :method => :delete %>
+            </div>
+        </div>
+        <% end %>
+        <div class="clear"></div>
+    </div>
+<% else %>
+  <%= render 'upload_first_image' %>
+<% end %>
