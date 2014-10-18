@@ -1,7 +1,18 @@
-preview_image = function() {
+init = function() {
     // When file input changes, try to render preview image
     $("#image_file").change(function() {
         readImage(this);
+    });
+
+    $('.image img').click(function(){
+        $('.modal-body').empty();
+        var title = $(this).parent().children('.title').html();
+        $('.modal-title').html(title);
+        var img = $('<img class="full-size-image">');
+        var full = $(this).parent().children('#full_size').val();
+        img.attr('src',full);
+        img.appendTo('.modal-body');
+        $('#myModal').modal({show:true});
     });
 
     // Try to read selected image and render to page
@@ -22,8 +33,8 @@ preview_image = function() {
 
 
 $(function() {
-    preview_image();
+    init();
 });
 $(window).bind('page:change', function() {
-    preview_image();
+    init();
 })
