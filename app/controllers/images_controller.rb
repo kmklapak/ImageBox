@@ -2,7 +2,7 @@ class ImagesController < ApplicationController
   before_action :user_signed_in?
 
   def index
-     @images = Image.where(user_id: current_user).page(params[:page]).order('created_at DESC')
+     @images = Image.where(user_id: current_user).paginate(:page => params[:page]).order('id DESC')
   end
 
   def new
@@ -10,33 +10,26 @@ class ImagesController < ApplicationController
   end
 
   def create
-    @image = Image.new(image_params)    # Not the final implementation!
+    @image = Image.new(image_params)
     @image.user_id = current_user.id
-
-    if @image.title == ""
-      uploaded_file = params[:image][:file]
-      @image.title = uploaded_file.original_filename
-    end
-
     if @image.save
       flash[:success] = "Image successfully uploaded!"
       redirect_to images_path
     else
-      render 'new'
+      redirect_to new_image_path
     end
   end
 
   def edit
-    @image = Image.find(params[:id])
+    @image = Image.friendly.find(params[:id])
   end
 
   def show
-    @image=Image.find(params[:id])
-    @title = @image.title
+    @image=Image.friendly.find(params[:id])
   end
 
   def update
-    @image = Image.find(params[:id])
+    @image = Image.friendly.find(params[:id])
     if @image.update_attributes(image_params)
       flash[:notice] = "Successfully updated image."
       redirect_to root_path
@@ -46,24 +39,15 @@ class ImagesController < ApplicationController
   end
 
   def destroy
-    @image=Image.find(params[:id])
+    @image=Image.friendly.find(params[:id])
     @image.destroy
     flash[:notice] = "Successfully removed image."
     redirect_to root_path
   end
 
-  def download
-    @image = Image.find(params[:id])
-    data = File.read(@image.file.path)
-    send_data data, :filename => @image.original_name, :disposition => 'attachment',
-              :type => "multipart/related"
-  end
-
-
   private
-
   def image_params
-    params.require(:image).permit(:title, :file)
+    params.require(:image).permit(:title, :file, :batch)
   end
 
 end
