@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141017231511) do
+ActiveRecord::Schema.define(version: 20141021013824) do
 
   create_table "images", force: true do |t|
     t.string   "title"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20141017231511) do
     t.integer  "user_id"
     t.string   "file"
     t.string   "original_name"
+    t.string   "uuid"
+    t.string   "batch"
   end
 
   create_table "users", force: true do |t|
