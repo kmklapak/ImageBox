@@ -14,4 +14,13 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require underscore
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+//= require backbone/image_box
+//= require schema
+//= require jquery-readyselector
+//= require select2
 //= require_tree .
