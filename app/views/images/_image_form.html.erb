@@ -1,6 +1,7 @@
 <%= simple_form_for @image, :html => {:multipart => true} do |f| %>
+    <%=f.error_notification%>
     <p>
-        <%= f.input :title %>
+        <%= f.input :title, hint: '(Optional)'%>
     </p>
     <%if ! current_page?(:controller => 'images', :action => 'new')  %>
     <p>
@@ -9,11 +10,22 @@
     <p>
       <label>Location</label>  <%= @image.file_url%>
     </p>
-        <%end %>
+    <p>
+      <label>Batch</label>  <%= @image.batch%> </p>
+    </p>
+    <%else %>
+    <p>
+      <%= f.input :batch%>
+    </p>
+    <%end %>
     <p>
         <%= f.input :file, :as => :file  %>
     </p>
     <div class="form-actions">
-      <%= f.submit "Save Image" %>
+      <%= f.button :submit, "Upload Image", class: "my-submit" %>
+      <div id="uploader" style="display:none;">
+        UPLOADING <%= image_tag "spinner.gif"%>
+      </div>
     </div>
 <% end %>
+

@@ -14,9 +14,9 @@
             <%= hidden_field_tag 'full_size', image.file_url.to_s %>
             <div class="title"><%= image.title %></div>
             <div class="actions">
-                <%= link_to "download", image_download_url(image) %> |
+                <%= link_to "download", image.download_url%> |
                 <%= link_to "edit", edit_image_path(image) %> |
-                <%= link_to "delete", image, :confirm => 'Are you sure? Image will be permanently deleted.', :method => :delete %>
+                <%= link_to "delete", image, data: { confirm: 'Are you sure? Image will be permanently deleted.'}, :method => :delete %>
             </div>
         </div>
         <% end %>
