@@ -48,7 +48,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
    def filename
-     "#{secure_token}.#{file.extension}" if original_filename.present?
+     st = secure_token
+     model.uuid = st
+     "#{st}.#{file.extension}" if original_filename.present?
    end
 
    protected

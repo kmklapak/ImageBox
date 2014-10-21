@@ -46,6 +46,16 @@ describe Image do
       @user.images.build(@attr).should_not be_valid
     end
 
+    it "should save image with a uniqye random name" do
+      @image = @user.images.build(@attr)
+      @image.file.should_not eq "image.jpg"
+    end
+
+    it "should store original filename" do
+      @image = @user.images.build(@attr)
+      @image.original_name.should eq "image.jpg"
+    end
+
   end
 
 end
