@@ -1,26 +1,36 @@
 <%= simple_form_for @image, :html => {:multipart => true} do |f| %>
     <%=f.error_notification%>
-    <p>
-        <%= f.input :title, hint: '(Optional)'%>
-    </p>
-    <%if ! current_page?(:controller => 'images', :action => 'new')  %>
-    <p>
-      <label>Filename</label>  <%= @image.original_name%> </p>
-    </p>
-    <p>
-      <label>Location</label>  <%= @image.file_url%>
-    </p>
-    <p>
-      <label>Batch</label>  <%= @image.batch%> </p>
-    </p>
-    <%else %>
-    <p>
-      <%= f.input :batch%>
-    </p>
-    <%end %>
-    <p>
-        <%= f.input :file, :as => :file  %>
-    </p>
+    <%if !current_page?(:controller => 'images', :action => 'new')  %>
+        <p>
+          <%= f.input :title, hint: '(Optional)'%>
+        </p>
+        <p>
+          <label>Filename</label>  <%= @image.original_name%> </p>
+        </p>
+        <p>
+          <label>Location</label>  <%= @image.file_url%>
+        </p>
+        <p>
+          <label>Batch</label>  <%= @image.batch%> </p>
+        </p>
+        <p>
+          <%= f.input :batch%>
+        </p>
+        <p>
+          <%= f.input :file, :as => :file  %>
+        </p>
+    <%else%>
+        <p>
+          <%= f.input :title, hint: '(Optional)'%>
+        </p>
+        <p>
+          <%= f.input :batch%>
+        </p>
+        <p>
+          <%= f.input :file, :as => :file  %>
+        </p>
+    <%end%>
+
     <div class="form-actions">
       <%= f.button :submit, "Upload Image", class: "my-submit" %>
       <div id="uploader" style="display:none;">

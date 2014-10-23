@@ -4,12 +4,30 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <div id="img-preview">
-        <p>Preview</p>
-      </div>
+
     </div>
     <div class="col-md-9">
-      <%= render 'image_form' %>
+      <%= simple_form_for @image, :html => {:multipart => true} do |f| %>
+          <%=f.error_notification%>
+              <p>
+                <%= f.input :title, hint: '(Optional)'%>
+              </p>
+              <p>
+                <label>Filename</label>  <%= @image.original_name%> </p>
+              </p>
+              <p>
+                <label>Location</label>  <%= @image.file_url%>
+              </p>
+              <p>
+                <label>Batch</label>  <%= @image.batch%> </p>
+              </p>
+          <div class="form-actions">
+            <%= f.button :submit, "Save Image", class: "my-submit" %>
+            <div id="uploader" style="display:none;">
+              UPLOADING <%= image_tag "spinner.gif"%>
+            </div>
+          </div>
+      <% end %>
       <p><%= link_to "Back to Images", images_path %></p>
     </div>
   </div>

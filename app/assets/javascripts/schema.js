@@ -515,3 +515,18 @@ captricity.getIEVersion = function() {
     }
     return rv;
 }
+
+captricity.connect_to_api = function(){
+    captricity.endpointURL = 'https://shreddr.captricity.com/api/backbone/schema';
+    captricity.apiToken = '3a49d79ceec94f599b2b2e2d4f0553bb';
+
+    window.schema = new captricity.APISchema();
+
+    function handleSchemaReady(){
+        console.log("The schema has been fetched and used to populate captricity.api.*");
+    }
+
+    if(captricity.apiToken) {
+      window.schema.fetch({success: handleSchemaReady });
+    }
+}

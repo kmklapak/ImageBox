@@ -11,7 +11,7 @@
         }
     };
 
-    loadUserProfile = function () {
+    var loadUserProfile = function () {
         waitForConnection();
         function waitForConnection() {
             $(".registrations.edit").ready(function () {
